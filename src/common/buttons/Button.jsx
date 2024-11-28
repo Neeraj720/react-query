@@ -4,7 +4,7 @@ function Button({ btnClass, lable, type }) {
   return (
     <>
       <button className={btnClass} type={type}>
-       {lable}
+      {lable}
       </button>
     </>
   );

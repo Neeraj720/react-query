@@ -6,6 +6,7 @@ import { API_URL } from '../api/api';
 export const addDataToAPI = async (data) => {
   try {
     const response = await axios.post(API_URL, data);
+    console.log("response:" , response)
     return response.data; 
   } catch (error) {
     throw new Error(error.response?.data?.message || 'Something went wrong');
@@ -14,19 +15,17 @@ export const addDataToAPI = async (data) => {
 
 // Custom hook that uses `useMutation`
 function useAddData() {
-  // `useMutation` hook to trigger the API request
-  const mutation = useMutation(addDataToAPI, {
+  const mutation = useMutation({
+    mutationFn: addDataToAPI,
     onSuccess: (data) => {
-      console.log('Data added successfully:', data);
-      // You can do additional actions here, such as showing a success message
+      console.log('Data added successfully:', data);  
     },
     onError: (error) => {
       console.error('Error adding data:', error.message);
-      // Handle error (show a message, etc.)
     },
   });
 
-  return mutation; // Return the mutation object, which contains `mutate`, `isLoading`, `isError`, etc.
+  return mutation; 
 }
 
 export default useAddData;

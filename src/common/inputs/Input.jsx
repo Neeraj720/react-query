@@ -1,22 +1,37 @@
-import React from 'react'
-
-function Input({lable,name,value,type,onchange,placehoder}) {
+function Input({ label, name, value, type, onChange, placeholder }) {
     return (
-        <>
-        {
-            type == "text" ? (  <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">{lable}</label>
-                <input type={type} name={name} value={value} onChange={onchange} placeholder={placehoder} class="form-control" />
-            </div>) :(
-                  <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">{lable}</label>
-                  <textarea type={type} name={name} value={value} onChange={onchange} placeholder={placehoder} class="form-control" />
-              </div>
-            )
-        }
-          
-        </>
-    )
-}
-
-export default Input
+      <>
+        {type === "text" ? (
+          <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">
+              {label}
+            </label>
+            <input
+              type={type}
+              name={name}
+              value={value}
+              onChange={onChange} // Ensure onChange is passed
+              placeholder={placeholder}
+              className="form-control"
+            />
+          </div>
+        ) : (
+          <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">
+              {label}
+            </label>
+            <textarea
+              name={name}
+              value={value}
+              onChange={onChange}
+              placeholder={placeholder}
+              className="form-control"
+            />
+          </div>
+        )}
+      </>
+    );
+  }
+  
+  export default Input;
+  

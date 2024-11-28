@@ -22,39 +22,36 @@ function AddEditForm() {
     e.preventDefault();
     console.log(formData, 'formData');
     
-    mutate(formData); 
+    mutate(formData); // Trigger the mutation with formData
   };
 
   return (
-    <>
-      <div className="container d-flex justify-content-center">
-        <div className="bg-danger p-3 rounded mt-3 w-50">
-          <form onSubmit={handleSubmit}>
-            <Input
-              label="Title"
-              placeholder="Enter Title"
-              name="title"  // Fix the name property
-              value={formData.title}
-              type="text"
-              onChange={getData}
-            />
-            <Input
-              label="Description"
-              placeholder="Enter Description"
-              name="description"
-              value={formData.description}
-              type="textarea"
-              onChange={getData}
-            />
-            <Button btnClass="btn btn-success" type="submit" label="Add" />
-          </form>
-
-          {/* Loading, Error, and Success handling */}
-          {isLoading && <p>Loading...</p>}
-          {isError && <p>Error: {error.message}</p>}
-        </div>
+    <div className="container d-flex justify-content-center">
+      <div className="bg-danger p-3 rounded mt-3 w-50">
+        <form onSubmit={handleSubmit}>
+          <Input
+            label="Title"
+            placeholder="Enter Title"
+            name="title" 
+            value={formData.title}
+            type="text"
+            onChange={getData}
+          />
+          <Input
+            label="Description"
+            placeholder="Enter Description"
+            name="description"
+            value={formData.description}
+            type="textarea"
+            onChange={getData}
+          />
+          <Button btnClass="btn btn-success py-2 px-2" type="submit" lable="ADD" />
+        </form>
+        {/* Loading, Error, and Success handling */}
+        {isLoading && <p>Loading...</p>}
+        {isError && <p>Error: {error.message}</p>}
       </div>
-    </>
+    </div>
   );
 }
 
