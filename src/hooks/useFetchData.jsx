@@ -1,5 +1,4 @@
 import axios from 'axios'
-import React from 'react'
 import { API_URL } from '../api/api'
 import { useQuery } from '@tanstack/react-query'
 
@@ -8,7 +7,7 @@ const fetchData = async () => {
     const response = await axios.get(API_URL)
     return response.data
   } catch (error) {
-    throw new Error(error.response?.data?.message || 'Something went wrong');
+    throw new Error(error|| 'Something went wrong');
   }
 }
 function useFetchData() {

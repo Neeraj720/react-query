@@ -9,14 +9,16 @@ const updateData = async (data) => {
     return response.data
   }
   catch (error) {
-    throw new Error(error.response?.data?.message || 'Something went wrong');
+    throw new Error(error || 'Something went wrong');
   }
 }
 function useUpdateData() {
+  const queryClient = useQueryClient()
   const mutation = useMutation({
     mutationFn: updateData,
     onSuccess: (data) => {
       console.log("Data Update Successfully :", data)
+      queryClient.invalidateQueries('data')
     },
     onError: (error) => {
       console.log("Something went wrong:", error)

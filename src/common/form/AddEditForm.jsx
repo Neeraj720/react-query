@@ -18,7 +18,6 @@ function AddEditForm() {
     const { mutate: add } = useAddData();
     const { mutate: remove } = useDeleteData();
     const { mutate: update } = useUpdateData();
-
     const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -51,7 +50,7 @@ function AddEditForm() {
     };
     // table headers
     const tableHeaders = ["#","Title","Description","Action"]
-    return (
+    return (   
         <div className="container">
             <div className="d-flex justify-content-center">
                 <div className="shadow-lg  p-3 rounded mt-3 w-50">

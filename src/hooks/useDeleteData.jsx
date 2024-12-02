@@ -7,14 +7,16 @@ const DeleteData = async (id) => {
     const response = await axios.delete(API_URL + id)
     return response.data.msg
   } catch (error) {
-    throw new Error(error.response?.data?.message || 'Something went wrong');
+    throw new Error(error || 'Something went wrong');
   }
 }
 function useDeleteData() {
+  const queryClient = useQueryClient()
   const mutation = useMutation({
     mutationFn: DeleteData,
     onSuccess: (data) => {
       console.log("Data Delete Successfully:", data)
+      queryClient.invalidateQueries('data')
     },
     onError: (error) => {
       console.log("Error", error)
