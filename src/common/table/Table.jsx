@@ -19,6 +19,7 @@ function Table({ data, onDelete, onEdit, tableHeaders }) {
             </tr>
           </thead>
           <tbody>
+            {/* Table Row */}
             {data?.map((data, index) => (
               <TableRow
                 key_data={data._id}
@@ -35,4 +36,4 @@ function Table({ data, onDelete, onEdit, tableHeaders }) {
   )
 }
 
-export default Table
+export default React.memo(Table)

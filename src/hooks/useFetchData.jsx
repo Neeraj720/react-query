@@ -7,14 +7,14 @@ const fetchData = async () => {
     const response = await axios.get(API_URL)
     return response.data
   } catch (error) {
-    throw new Error(error|| 'Something went wrong');
+    console.log(error);
   }
 }
 function useFetchData() {
   return (
     useQuery({
       queryKey: ["data"],
-      queryFn: fetchData
+      queryFn: fetchData,
     })
   )
 }

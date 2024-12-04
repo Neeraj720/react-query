@@ -8,6 +8,7 @@ function TableRow({ item, key_data, onDelete, onEdit, index }) {
       <td className="text-center">{item?.title}</td>
       <td className="text-center">{item?.description}</td>
       <td className="text-center">
+        {/* Buttons Components */}
         <Button
           btnClass="btn btn-danger"
           label="Delete"
@@ -25,4 +26,4 @@ function TableRow({ item, key_data, onDelete, onEdit, index }) {
   );
 }
 
-export default TableRow;
+export default React.memo(TableRow);

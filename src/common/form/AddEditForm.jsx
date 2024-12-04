@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Input from "../inputs/Input";
 import Button from "../buttons/Button";
 import useAddData from "../../hooks/useAddData";
@@ -35,25 +35,38 @@ function AddEditForm() {
         setFormData({ title: "", description: "" });
         setEditingItem(null);
     };
-    // Handle Delete
-    const handleDelete = (item) => {
-        remove(item._id);
-    };
+
+    // const handleDelete = (item) => {
+    //     remove(item._id);
+    // };
+
+    // when parent component rander every time this function is not recreate unless it's dependency changed
+
+    // Handle Delete with useCallback function()
+    const handleDelete = useCallback((item) => {
+        remove(item._id)
+    }, [remove])
+
     // Set Edit Item
     useEffect(() => {
         if (editingItem) {
             setFormData({ _id: editingItem._id, title: editingItem.title, description: editingItem.description });
         }
     }, [editingItem])
-    const handleEdit = (item) => {
+    // const handleEdit = (item) => {
+    //     setEditingItem(item);
+    // };
+
+    const handleEdit = useCallback((item) => {
         setEditingItem(item);
-    };
+    }, []);
     // table headers
-    const tableHeaders = ["#","Title","Description","Action"]
-    return (   
+    const tableHeaders = ["#", "Title", "Description", "Action"]
+    return (
         <div className="container">
             <div className="d-flex justify-content-center">
                 <div className="shadow-lg  p-3 rounded mt-3 w-50">
+                    {/* Form */}
                     <form onSubmit={handleSubmit}>
                         <Input
                             label="Title"
