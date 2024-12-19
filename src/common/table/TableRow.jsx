@@ -14,7 +14,8 @@ function TableRow({ item, key_data, onDelete, onEdit, index }) {
           label="Delete"
           onAction={onDelete}
           item={item}
-        /> &nbsp; || &nbsp;
+        />{" "}
+        &nbsp; || &nbsp;
         <Button
           btnClass="btn btn-primary"
           label="Update"
