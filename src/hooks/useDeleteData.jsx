@@ -16,6 +16,7 @@ function useDeleteData() {
     mutationFn: DeleteData,
     onSuccess: (data) => {
       console.log("Data Delete Successfully:", data)
+      // This one is for reflecting changes immediately
       queryClient.invalidateQueries('data')
     },
     onError: (error) => {

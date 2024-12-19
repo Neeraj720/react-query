@@ -4,7 +4,7 @@ import Button from "../buttons/Button";
 import useAddData from "../../hooks/useAddData";
 import useFetchData from "../../hooks/useFetchData";
 import useDeleteData from "../../hooks/useDeleteData";
-import Table from '../table/Table';
+import Table from "../table/Table";
 import useUpdateData from "../../hooks/useUpdateData";
 
 function AddEditForm() {
@@ -28,31 +28,31 @@ function AddEditForm() {
             alert("Please fill all fields.");
         } else if (editingItem) {
             console.log("Updating item:", formData);
-            update(formData)
+            update(formData);
         } else {
             add(formData);
         }
         setFormData({ title: "", description: "" });
         setEditingItem(null);
     };
-
-    // const handleDelete = (item) => {
-    //     remove(item._id);
-    // };
-
-    // when parent component rander every time this function is not recreate unless it's dependency changed
-
     // Handle Delete with useCallback function()
-    const handleDelete = useCallback((item) => {
-        remove(item._id)
-    }, [remove])
+    const handleDelete = useCallback(
+        (item) => {
+            remove(item._id);
+        },
+        [remove]
+    );
 
     // Set Edit Item
     useEffect(() => {
         if (editingItem) {
-            setFormData({ _id: editingItem._id, title: editingItem.title, description: editingItem.description });
+            setFormData({
+                _id: editingItem._id,
+                title: editingItem.title,
+                description: editingItem.description,
+            });
         }
-    }, [editingItem])
+    }, [editingItem]);
     // const handleEdit = (item) => {
     //     setEditingItem(item);
     // };
@@ -61,7 +61,7 @@ function AddEditForm() {
         setEditingItem(item);
     }, []);
     // table headers
-    const tableHeaders = ["#", "Title", "Description", "Action"]
+    const tableHeaders = ["#", "Title", "Description", "Action"];
     return (
         <div className="container">
             <div className="d-flex justify-content-center">
@@ -93,7 +93,12 @@ function AddEditForm() {
                 </div>
             </div>
             {/* Table */}
-            <Table data={data} onDelete={handleDelete} onEdit={handleEdit} tableHeaders={tableHeaders} />
+            <Table
+                data={data}
+                onDelete={handleDelete}
+                onEdit={handleEdit}
+                tableHeaders={tableHeaders}
+            />
         </div>
     );
 }

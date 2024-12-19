@@ -18,6 +18,7 @@ function useUpdateData() {
     mutationFn: updateData,
     onSuccess: (data) => {
       console.log("Data Update Successfully :", data)
+      // This one is for reflecting changes immediately
       queryClient.invalidateQueries('data')
     },
     onError: (error) => {

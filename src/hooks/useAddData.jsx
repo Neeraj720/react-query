@@ -20,12 +20,14 @@ function useAddData() {
         mutationFn: addDataToAPI,
         onSuccess: (data) => {
             console.log('Data added successfully:', data);
+            // This one is for reflecting changes immediately
             queryClient.invalidateQueries('data')
         },
         onError: (error) => {
             console.error('Error adding data:', error.message);
         },
     });
+    console.log("mutation:" ,mutation)
     return mutation;
 }
 
